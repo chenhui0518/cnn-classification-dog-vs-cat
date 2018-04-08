@@ -38,7 +38,7 @@ class ImgCNN(object):
                  self.h_drop = tf.nn.dropout(self.h_fc_1, keep_prob=self.dropout_keep_prob, name='h_drop')
 
             with tf.name_scope('fc_layer_2'):
-                self.output = self.fc_layer(self.h_drop, 128, n_classes, activation_function=tf.nn.sigmoid)
+                self.output = self.fc_layer(self.h_drop, 128, n_classes, activation_function=None)
 
         with tf.device('/cpu:0'):
             with tf.name_scope('prediction'):
