@@ -10,6 +10,7 @@ import tensorflow as tf
 import data_helper
 from img_cnn import ImgCNN
 
+
 ### parameters ###
 # ===============================================
 FLAGS = gflags.FLAGS

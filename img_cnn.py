@@ -3,6 +3,7 @@
 import numpy as np
 import tensorflow as tf
 
+
 class ImgCNN(object):
     '''
     A cnn for image classification.
