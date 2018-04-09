@@ -21,7 +21,7 @@ gflags.DEFINE_float('dev_sample_percentage', 0.01, 'Percentage of the training d
 # model parameters
 gflags.DEFINE_integer('img_height', 224, 'The height of the image for training (default: 227).')
 gflags.DEFINE_integer('img_width', 224, 'The width of the image for training (default: 227).')
-gflags.DEFINE_integer('img_channels', 3, 'The number of channels of the image for training (default: 3).')
+gflags.DEFINE_integer('img_channels', 1, 'The number of channels of the image for training (default: 3).')
 gflags.DEFINE_float('dropout_keep_prob', 0.8, 'Dropout keep probability (default: 0.8).')
 
 # training parameters
@@ -63,8 +63,9 @@ del x_path, y
 x_dev = []
 for i in range(len(x_path_dev)):
     img_data = data_helper.img_resize(img_path=x_path_dev[i], img_height=FLAGS.img_height, img_width=FLAGS.img_width)
-    img_data_min, img_data_max = np.min(img_data), np.max(img_data)
-    img_data = (img_data - img_data_min) / (img_data_max - img_data_min)
+    #img_data_min, img_data_max = np.min(img_data), np.max(img_data)
+    #img_data = (img_data - img_data_min) / (img_data_max - img_data_min)
+    img_data = data_helper.rgb2gray(img_data)
     x_dev.append(img_data)
 x_dev = np.array(x_dev)
 y_dev = np.array(y_dev)
