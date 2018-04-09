@@ -65,8 +65,8 @@ class ImgCNN(object):
         return tf.nn.max_pool(value=x, ksize=[1,ksize,ksize,1], strides=[1,stride,stride,1], padding=padding, name='max-pool')
 
     def fc_layer(self, x, in_size, out_size, activation_function=None):
-        w = self.w_variable(shape=[in_size, out_size])
-        b = self.b_variable(shape=[out_size])
+        w = self.w_variable(shape=[in_size, out_size], name='w')
+        b = self.b_variable(shape=[out_size], name='b')
         z = tf.nn.xw_plus_b(x, w, b, name='Wx_plus_b')
         if activation_function is None:
             outputs = z
