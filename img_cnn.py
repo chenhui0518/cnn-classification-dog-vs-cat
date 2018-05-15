@@ -20,7 +20,7 @@ class ImgCNN(object):
                 self.h_conv_1 = self.conv2d(x=self.input_x, W=self.w_variable(shape=filter_shape_1), stride=1, padding='SAME')
                 self.h_conv_1 = tf.nn.relu(features=self.h_conv_1, name='relu_conv_1')
             with tf.name_scope('pooling_layer_1'):
-                self.h_pool_1 = self.max_pool(x=self.h_conv_1, ksize=2, stride=2, padding='SAME')
+                self.h_pool_1 = self.max_pool(x=self.h_conv_1, ksize=2, stride=2, padding='SAME')   # shape: [112 * 112 * 8]
 
             with tf.name_scope('conv_layer_2'):
                 filter_shape_2 = [3,3,8,16]
@@ -34,7 +34,7 @@ class ImgCNN(object):
                 self.h_conv_3 = self.conv2d(x=self.h_pool_2, W=self.w_variable(shape=filter_shape_3), stride=1, padding='SAME')
                 self.h_conv_3 = tf.nn.relu(features=self.h_conv_3, name='relu_conv_3')
             with tf.name_scope('pooling_layer_3'):
-                self.h_pool_3 = self.max_pool(x=self.h_conv_3, ksize=2, stride=2, padding='SAME')   # shape: [56 * 56 * 16]
+                self.h_pool_3 = self.max_pool(x=self.h_conv_3, ksize=2, stride=2, padding='SAME')   # shape: [28 * 28 * 32]
 
             num_total_unit = self.h_pool_3.get_shape()[1:4].num_elements()
             self.h_pool_3_flat = tf.reshape(self.h_pool_3, shape=[-1, num_total_unit])
