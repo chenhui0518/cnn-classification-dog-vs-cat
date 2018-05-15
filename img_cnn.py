@@ -29,11 +29,18 @@ class ImgCNN(object):
             with tf.name_scope('pooling_layer_2'):
                 self.h_pool_2 = self.max_pool(x=self.h_conv_2, ksize=2, stride=2, padding='SAME')   # shape: [56 * 56 * 16]
 
-            num_total_unit = 56*56*16
-            self.h_pool_2_flat = tf.reshape(self.h_pool_2, shape=[-1, num_total_unit])
+            with tf.name_scope('conv_layer_3'):
+                filter_shape_3 = [3,3,16,32]
+                self.h_conv_3 = self.conv2d(x=self.h_pool_2, W=self.w_variable(shape=filter_shape_3), stride=1, padding='SAME')
+                self.h_conv_3 = tf.nn.relu(features=self.h_conv_3, name='relu_conv_3')
+            with tf.name_scope('pooling_layer_3'):
+                self.h_pool_3 = self.max_pool(x=self.h_conv_3, ksize=2, stride=2, padding='SAME')   # shape: [56 * 56 * 16]
+
+            num_total_unit = self.h_pool_3.get_shape()[1:4].num_elements()
+            self.h_pool_3_flat = tf.reshape(self.h_pool_3, shape=[-1, num_total_unit])
 
             with tf.name_scope('fc_layer_1'):
-                self.h_fc_1 = self.fc_layer(self.h_pool_2_flat, num_total_unit, 128, activation_function=tf.nn.relu)
+                self.h_fc_1 = self.fc_layer(self.h_pool_3_flat, num_total_unit, 128, activation_function=tf.nn.relu)
 
             with tf.name_scope('dropout'):
                  self.h_drop = tf.nn.dropout(self.h_fc_1, keep_prob=self.dropout_keep_prob, name='h_drop')

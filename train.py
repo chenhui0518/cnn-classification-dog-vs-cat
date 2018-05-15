@@ -23,11 +23,11 @@ gflags.DEFINE_float('dev_sample_percentage', 0.01, 'Percentage of the training d
 gflags.DEFINE_integer('img_height', 224, 'The height of the image for training (default: 227).')
 gflags.DEFINE_integer('img_width', 224, 'The width of the image for training (default: 227).')
 gflags.DEFINE_integer('img_channels', 1, 'The number of channels of the image for training (default: 3).')
-gflags.DEFINE_float('dropout_keep_prob', 0.8, 'Dropout keep probability (default: 0.8).')
+gflags.DEFINE_float('dropout_keep_prob', 0.5, 'Dropout keep probability (default: 0.8).')
 
 # training parameters
 gflags.DEFINE_float('learning_rate', 0.001, 'Learning rate for training.')
-gflags.DEFINE_integer('batch_size', 64, 'The batch size for each train step.')
+gflags.DEFINE_integer('batch_size', 32, 'The batch size for each train step.')
 gflags.DEFINE_integer('num_epochs', 200, 'Number of training epochs (default: 200).')
 gflags.DEFINE_integer('evaluate_every', 100, 'Evaluate model on dev set after this many of steps (default: 100).')
 gflags.DEFINE_integer('checkpoint_every', 100, 'Save model after this many steps (default: 100).')
