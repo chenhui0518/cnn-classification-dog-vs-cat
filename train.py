@@ -23,7 +23,7 @@ gflags.DEFINE_float('dev_sample_percentage', 0.01, 'Percentage of the training d
 gflags.DEFINE_integer('img_height', 224, 'The height of the image for training (default: 227).')
 gflags.DEFINE_integer('img_width', 224, 'The width of the image for training (default: 227).')
 gflags.DEFINE_integer('img_channels', 1, 'The number of channels of the image for training (default: 3).')
-gflags.DEFINE_float('dropout_keep_prob', 0.5, 'Dropout keep probability (default: 0.8).')
+gflags.DEFINE_float('dropout_keep_prob', 0.7, 'Dropout keep probability (default: 0.7).')
 
 # training parameters
 gflags.DEFINE_float('learning_rate', 0.001, 'Learning rate for training.')
