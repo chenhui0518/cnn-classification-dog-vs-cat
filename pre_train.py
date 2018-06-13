@@ -90,7 +90,7 @@ history = model.fit_generator(
     steps_per_epoch=train_generator.n // FLAGS.batch_size,
     epochs=FLAGS.num_epochs,
     validation_data=validation_generator,
-    verbose=2,
+    verbose=1,
     callbacks=[keras.callbacks.ModelCheckpoint(
         './log/VGG16-transfer-learning.model', monitor='val_loss', save_best_only=True, verbose=1)]
     )
